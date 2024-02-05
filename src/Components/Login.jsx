@@ -4,16 +4,17 @@ import { checkValidData } from "../Utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null)
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const nameRef = useRef(null);
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
   const handleButtonClick = () => {
     //validate
-    const res = checkValidData(emailRef?.current.value, passwordRef?.current.value);
-    console.log(passwordRef.current.value);
-    console.log(res);
+    const res = checkValidData(emailRef?.current?.value, passwordRef?.current?.value, nameRef?.current?.value);
+    setErrorMsg(res)
   };
   return (
     <div>
@@ -37,6 +38,7 @@ const Login = () => {
             type="text"
             className="p-4 my-4 w-full bg-gray-800"
             placeholder="Full Name"
+            ref={nameRef}
           />
         )}
         <input
@@ -45,12 +47,14 @@ const Login = () => {
           className="p-4 my-4 w-full bg-gray-800"
           placeholder="Email or Phone Number"
         />
+        {/* <p className="text-red-500">{errorMsg}</p> */}
         <input
           ref={passwordRef}
           type="password"
           className="p-4 my-4 w-full bg-gray-800"
           placeholder="Password"
         />
+        <p className="text-red-500">{errorMsg}</p>
         <button
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleButtonClick}
