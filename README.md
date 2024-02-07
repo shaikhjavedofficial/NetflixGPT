@@ -2,7 +2,7 @@
 
 Netflix Clone
 
-firebase
+firebase :
 create an account
 create project
 enable hosting
@@ -12,3 +12,19 @@ https://firebase.google.com/docs/reference/js
 
 
 goto project overview and select Authentication => getstarted
+
+1.firebase login
+2.-""- init
+host woth configurations and github
+use existing app
+select your app name
+public directory as "build"
+then N,N,N
+npm run build
+
+3.-""- deploy
+
+after deploy on firebase
+goto build-> hosting-> domain name
+==============================================
+create sign up on firebase:
