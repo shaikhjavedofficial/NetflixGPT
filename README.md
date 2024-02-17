@@ -10,7 +10,6 @@ https://console.firebase.google.com/project/netflix-b1329/authentication/provide
 open web API references
 https://firebase.google.com/docs/reference/js
 
-
 goto project overview and select Authentication => getstarted
 
 1.firebase login
@@ -28,3 +27,11 @@ after deploy on firebase
 goto build-> hosting-> domain name
 ==============================================
 create sign up on firebase:
+https://console.firebase.google.com/project/netflix-b1329/authentication/users
+https://firebase.google.com/docs/auth/web/manage-users
+
+firstuser@gmail.com
+FUser@10
+
+seconduser@gmail.com
+SUser@10

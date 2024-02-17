@@ -1,8 +1,15 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../Utils/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile
+} from "firebase/auth";
 import { auth } from "../Utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../Utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -10,29 +17,42 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
   const handleButtonClick = () => {
-    const email = emailRef?.current?.value
-    const password = passwordRef?.current?.value
+    const email = emailRef?.current?.value;
+    const password = passwordRef?.current?.value;
+    const name = nameRef?.current?.value;
     //validate
-    const res = checkValidData(
-      email,password
-      // nameRef?.current?.value
-    );
+    const res = checkValidData(email, password, name);
     setErrorMsg(res);
     if (res) return;
     //create user or sign in
     if (!isSignInForm) {
       // sign up
-      createUserWithEmailAndPassword(
-        auth,
-        email, password
-      )
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: nameRef?.current?.value,
+            photoURL: "https://avatars.githubusercontent.com/u/60027240?v=4",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const { uid, email, displayName,photoURL } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName, photoURL }));
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              setErrorMsg(error.Message);
+            });
           console.log(user);
           // ...
         })
@@ -44,19 +64,19 @@ const Login = () => {
         });
     } else {
       signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user)
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMsg(errorCode + "-" + errorMessage);
-  });
-
-
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/browse");
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMsg(errorCode + "-" + errorMessage);
+          navigate("/");
+        });
     }
   };
   return (
