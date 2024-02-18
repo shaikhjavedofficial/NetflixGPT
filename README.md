@@ -37,5 +37,13 @@ seconduser@gmail.com
 SUser@10
 
 TMDB:
+dev url: https://developer.themoviedb.org/reference/movie-videos
+
+url: https://www.themoviedb.org/settings/api
+
 api: 0dd77f3c2fa47570c39e78208f058062
+
 api auth: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZGQ3N2YzYzJmYTQ3NTcwYzM5ZTc4MjA4ZjA1ODA2MiIsInN1YiI6IjY1ZDBkMmY5MmRkYTg5MDE3YmRjNmQ2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8G9VCl3m9j0fZClmOnw3cXNUMoPGNTY1f_Qy9SJkhxQ
+
+Note: double rendering happens due to react strict mode, only in dev mode this happens not in prod.
+
