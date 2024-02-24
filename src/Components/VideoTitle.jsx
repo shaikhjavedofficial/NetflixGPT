@@ -10,7 +10,7 @@ export const VideoTitle = ({ title, overview }) => {
           ▶️ Play
         </button>
         <button className=" bg-gray-500 text-white p-4 px-12 text-lg bg-opacity-50 rounded-lg mx-2">
-          ℹ️ More Info
+          &#9432; More Info
         </button>
       </div>
     </div>
