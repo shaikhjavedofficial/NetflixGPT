@@ -7,10 +7,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../Utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../Utils/userSlice";
-import { AVATAR } from "../Utils/constants";
+import { addUser } from "../Utils/userSlice";
+import { AVATAR, BG_IMG } from "../Utils/constants";
 // "https://avatars.githubusercontent.com/u/60027240?v=4"
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -79,11 +78,7 @@ const Login = () => {
     <div>
       <Header />
       <div>
-        <img
-          className="absolute"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_small.jpg"
-          alt="image"
-        />
+        <img className="absolute" src={BG_IMG} alt="image" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
