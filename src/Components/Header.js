@@ -4,7 +4,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../Utils/userSlice";
-import {LOGO} from "../Utils/constants"
+import { LOGO } from "../Utils/constants";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,11 +42,7 @@ const Header = () => {
   }, []);
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img
-        className="w-44"
-        alt="logo"
-        src={LOGO}
-      />
+      <img className="w-44" alt="logo" src={LOGO} />
       {selector && (
         <div className="flex p-2">
           <img alt="userIcon" className="w-12 h-12" src={selector?.photoURL} />
