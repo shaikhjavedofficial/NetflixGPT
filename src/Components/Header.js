@@ -45,6 +45,7 @@ const Header = () => {
   const handleGPTSearchClick = () => {
     dispatch(toggleGPTSearch());
   };
+  const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
   };
@@ -53,23 +54,25 @@ const Header = () => {
       <img className="w-44" alt="logo" src={LOGO} />
       {selector && (
         <div className="flex p-2">
-          <select
-            className="p-2 bg-gray-900 text-white m-2"
-            onChange={handleLanguageChange}
-          >
-            {SUPPORTED_LANGUAGES.map((item, i) => {
-              return (
-                <option key={item + 1} value={item.identifier}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
+          {showGPTSearch && (
+            <select
+              className="p-2 bg-gray-900 text-white m-2"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((item, i) => {
+                return (
+                  <option key={item + 1} value={item.identifier}>
+                    {item.name}
+                  </option>
+                );
+              })}
+            </select>
+          )}
           <button
             className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
             onClick={handleGPTSearchClick}
           >
-            GPT Search
+            {showGPTSearch ? "Home Page" : "GPT Search"}
           </button>
           <img alt="userIcon" className="w-12 h-12" src={selector?.photoURL} />
           <button onClick={handleSignOut} className="text-white font-bold">
