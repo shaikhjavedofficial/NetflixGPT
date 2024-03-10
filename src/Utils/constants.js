@@ -25,4 +25,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "es", name: "Spanish" },
 ];
 
-export const openAiKey = "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";
+export const OPENAPI_KEY =
+  "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";

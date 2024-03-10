@@ -47,3 +47,5 @@ api auth: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZGQ3N2YzYzJmYTQ3NTcwYzM5ZTc4MjA4ZjA1O
 
 Note: double rendering happens due to react strict mode, only in dev mode this happens not in prod.
 
+opne ai:
+https://www.npmjs.com/package/openai
